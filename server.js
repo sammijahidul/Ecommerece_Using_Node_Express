@@ -13,6 +13,7 @@ connectDB();
 
 //express app
 const app = express();
+// app.use(express.urlencoded({ extended: true }));
 
 //middleware
 app.use(express.json());
