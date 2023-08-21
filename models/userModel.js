@@ -1,6 +1,5 @@
 import mongoose from "mongoose";
 
-
 const userSchema = new mongoose.Schema({
     name:{
         type: String,
@@ -26,7 +25,7 @@ const userSchema = new mongoose.Schema({
     },
     role:{
         type: Number,
-        default: 0
+        default: 0 
     }
 }, { timestamps: true });
 
