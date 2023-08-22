@@ -1,12 +1,14 @@
 {
   "name": "e-commerce_node",
   "version": "1.0.0",
-  "description": "e-commerce rest api",
-  "main": "index.js",
+  "description": "E-commerce rest api",
+  "main": "server.js",
   "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon server.js"
+    "start": "node server.js",
+    "server": "nodemon server.js",
+    "client": "npm start --prefix ./client",
+    "dev": "concurrently \"npm run server arg\" \"npm run client\""
   },
   "keywords": [],
   "author": "Jahidul",
@@ -14,6 +16,8 @@
   "dependencies": {
     "bcrypt": "^5.1.1",
     "colors": "^1.4.0",
+    "concurrently": "^8.2.1",
+    "cors": "^2.8.5",
     "dotenv": "^16.3.1",
     "express": "^4.18.2",
     "jsonwebtoken": "^9.0.1",
