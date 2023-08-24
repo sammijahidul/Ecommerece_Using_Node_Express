@@ -11,6 +11,7 @@ const Register = () => {
     const [password, setPassword] = useState("")
     const [phone, setPhone] = useState("")
     const [address, setAddress] = useState("")
+    const [answer, setAnswer] = useState("")
     const navigate = useNavigate();
 
     //form function
@@ -23,7 +24,8 @@ const Register = () => {
                       email, 
                       password, 
                       phone, 
-                      address
+                      address,
+                      answer
                     }
                   );
           if(res && res.data.success) {
@@ -41,9 +43,9 @@ const Register = () => {
 
     return (
       <Layout titile='Register - Ecommerce App'>
-        <div className='form-container' >
+        <div className='form-container' style={{ minHeight: "90vh" }}>
         <form onSubmit={handleSubmit}>
-          <h4>REGISTER FORM </h4>       
+          <h4 className='title'>REGISTER FORM </h4>       
             <div className="mb-3">            
               <input 
                 type="text" 
@@ -99,10 +101,21 @@ const Register = () => {
                 required 
               />     
             </div>
+            <div className="mb-3">            
+              <input 
+                type="text"
+                value={answer} 
+                onChange={ (e) => setAnswer(e.target.value)}
+                className="form-control" 
+                id="exampleInputEmail1" 
+                placeholder='What is your favourite sports' 
+                required 
+              />     
+            </div>
             <div className="mb-3 form-check">
             </div>
             <button type="submit" className="btn btn-primary">
-                Submit
+                Register
             </button>
         </form>
         </div>

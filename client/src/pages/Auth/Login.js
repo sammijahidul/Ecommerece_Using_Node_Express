@@ -10,6 +10,7 @@ const Login = () => {
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("") 
     const [auth, setAuth] = useAuth() 
+
     const navigate = useNavigate();
     const location = useLocation();
 
@@ -43,11 +44,11 @@ const Login = () => {
     }
     return (
         <Layout titile='Login - Ecommerce App'>
-            <div className='form-container' >
+          <div className='form-container' style={{ minHeight: "90vh" }}>
             <form onSubmit={handleSubmit}>
-            <h4>LOGIN FORM </h4>       
+            <h4 className='title'>LOGIN FORM </h4>       
                 
-                <div className="mb-3">           
+              <div className="mb-3">           
                 <input 
                     type="email" 
                     value={email}
@@ -57,8 +58,8 @@ const Login = () => {
                     placeholder='Enter Your Email'
                     required
                 />     
-                </div>
-                <div className="mb-3">            
+              </div>
+              <div className="mb-3">            
                 <input 
                     type="password" 
                     value={password}
@@ -68,14 +69,23 @@ const Login = () => {
                     placeholder='Enter Your Password' 
                     required
                 />
-                </div>                
-                <div className="mb-3 form-check">
-                </div>
+              </div>     
+              <div className='mb-3'>
+                    <button 
+                        type="button" 
+                        className="btn btn-primary" 
+                        onClick={() => {
+                          navigate("/forgot-password")
+                        }}
+                    >
+                        Forgot Password
+                    </button>  
+              </div>                                                     
                 <button type="submit" className="btn btn-primary">
-                    Submit
+                    Log in
                 </button>
             </form>
-            </div>
+          </div>
         </Layout>    
   )
 }
