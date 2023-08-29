@@ -42,3 +42,56 @@ export const createProductController = async(req, res) => {
         })
     }
 };
+
+export const getProductsController = async(req, res) => {
+    try {
+        const products = await productModel
+           .find({})
+           .populate('category')
+           .select('-photo')
+           .limit(12)
+           .sort({createdAt: -1});
+        res.status(200).send({
+            success: true,
+            totalProducts: products.length,
+            message: 'All Products',
+            products,
+            
+        });          
+    } catch (error) {
+        console.log(error)
+        res.status(500).send({
+            success: false,           
+            message: 'Errow while getting products',
+            error: error.message
+        })
+    }
+};
+
+export const getProductController = async (req, res) => {
+    try {
+        const product = await productModel.
+            findOne({slug: req.params.slug})
+            .select('-photo')
+            .populate('category');
+        if(!product) {
+            return res.status(404).send({
+                success: true,
+                message: 'Not found a product by this name',                
+            })
+        }
+        res.status(200).send({
+            success: true,
+            message: 'Successfully showing a product',
+            product
+        })
+        
+    } catch (error) {
+        console.log(error)
+        res.status(500).send({
+            success: false,
+            message: 'Error while getting a product',
+            error: error.message
+        })
+    }
+}

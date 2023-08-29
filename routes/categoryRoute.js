@@ -12,11 +12,17 @@ const router = express.Router()
 
 //router
 //Create category route
-router.post('/create-category', requireSignIn, isAdmin, createCategoryController);
-
+router.post('/create-category', 
+             requireSignIn, 
+             isAdmin, 
+             createCategoryController
+);
 //Update category route
-router.patch('/update-category/:id', requireSignIn, isAdmin, updateCategoryController);
-
+router.patch('/update-category/:id', 
+              requireSignIn, 
+              isAdmin, 
+              updateCategoryController
+);
 //Get All category
 router.get('/get-category', gettingAllCategory);
 
@@ -24,6 +30,10 @@ router.get('/get-category', gettingAllCategory);
 router.get('/single-category/:slug', getSingleCategory);
 
 //Delete category
-router.delete('/delete-category/:id', requireSignIn, isAdmin, deleteCategory)
+router.delete('/delete-category/:id', 
+               requireSignIn, 
+               isAdmin, 
+               deleteCategory
+);
 
 export default router
