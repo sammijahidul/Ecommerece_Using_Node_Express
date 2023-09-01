@@ -107,3 +107,11 @@
 /*
 ---> register page related css 
 */
+
+/*
+---> 
+*/
+.product-link{
+  text-decoration: none !important;
+  color: black !important;
+}

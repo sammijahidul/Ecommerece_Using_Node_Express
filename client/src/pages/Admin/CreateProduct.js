@@ -5,7 +5,6 @@ import axios from 'axios'
 import toast from 'react-hot-toast'
 import {Select} from 'antd'
 import {useNavigate} from 'react-router-dom'
-
 const {Option} = Select
 
 const CreateProduct = () => {

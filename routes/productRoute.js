@@ -27,7 +27,7 @@ router.patch('/update-product/:pid',
             formidable(), 
             updateProductController
 );
-//Update product
+//delete product
 router.delete('/delete-product/:pid', 
             requireSignIn, 
             isAdmin, 
