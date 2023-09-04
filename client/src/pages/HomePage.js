@@ -118,10 +118,10 @@ const HomePage = () => {
            <h4 className='text-center'>Filter By Category</h4>
            <div className='d-flex flex-column'>
               {categories?.map(c => (
-                  <Checkbox key={c._id} onChange={(e) => 
-                    handleFilter(e.target.checked, c._id)} >
-                    {c.name}
-                  </Checkbox>
+                <Checkbox key={c._id} onChange={(e) => 
+                  handleFilter(e.target.checked, c._id)} >
+                  {c.name}
+                </Checkbox>
               ))}
            </div>
            {/* price filter */}
@@ -138,15 +138,16 @@ const HomePage = () => {
            <div className='d-flex flex-column'>
              <button className='btn btn-danger' 
                 onClick={() => window.location.reload()}
-                >Reset Filters
+                >
+                  Reset Filters
               </button>
            </div>                     
          </div>
-         <div className='col-md-9'>
+         <div className='col-md-9 offset-1'>
            <h1 className='text-center'>All Products</h1>
            <div className='d-flex flex-wrap'>
               {products?.map(p => (
-                <div className="card m-2" style={{width: '18rem'}}>
+                <div className="card m-2" style={{width: '18rem'}} key={p._id}>
                     <img src={`/api/v1/product/product-photo/${p._id}`} 
                         className="card-img-top" 
                         alt={p.name} 
@@ -157,10 +158,12 @@ const HomePage = () => {
                         <p className="card-text">$ {p.price}</p>
                         <button  class="btn btn-primary ms-1" 
                             onClick={() => navigate(`/product/${p.slug}`)}
-                            >
+                        >
                             See Details
                         </button>
-                        <button  class="btn btn-secondary ms-1">Add To Cart</button>
+                        <button  class="btn btn-secondary ms-1">
+                          Add To Cart
+                        </button>
                     </div>
                 </div>
                ))}
