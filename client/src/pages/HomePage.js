@@ -6,11 +6,10 @@ import { Link } from 'react-router-dom';
 import { Checkbox, Radio } from 'antd';
 import { Prices } from '../components/Prices';
 import { useNavigate } from 'react-router-dom';
-
-
+import {useCart} from '../context/cart'
 
 const HomePage = () => {
-
+  const [cart, setCart] = useCart()
   const [products, setProducts] = useState([])
   const [categories, setCategories] = useState([])
   const [checked, setChecked] = useState([])
@@ -19,7 +18,7 @@ const HomePage = () => {
   const [page, setPage] = useState(1)
   const [loading, setLoading] = useState(false)
   const navigate = useNavigate();
-
+  
   //get all category
   const getAllCategory = async () => {
       try {
@@ -161,8 +160,14 @@ const HomePage = () => {
                         >
                             See Details
                         </button>
-                        <button  class="btn btn-secondary ms-1">
-                          Add To Cart
+                        <button  class="btn btn-secondary ms-1" 
+                          onClick={() => {
+                            setCart([...cart, p]);
+                            localStorage.setItem('cart', JSON.stringify([...cart, p]))
+                            toast.success('Item added to cart')
+                          }}
+                          >
+                             Add To Cart
                         </button>
                     </div>
                 </div>
