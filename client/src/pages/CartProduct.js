@@ -60,8 +60,8 @@ const CartProduct = () => {
                           src={`/api/v1/product/product-photo/${p._id}`}
                           className='card-img-top'
                           alt={p.name}
-                          width={"100px"}
-                          height={"100px"}
+                          width={"150px"}
+                          height={"150px"}
                           />
                           </div>
                         <div className='col-md-8'>
@@ -83,7 +83,36 @@ const CartProduct = () => {
                     <p>Total | Checkout | Payment</p>
                     <hr />
                     <h4>Total : {totalPrice()}</h4>
-
+                    {auth?.user?.address ? (
+                      <>
+                      <div className='mb-3'>
+                        <h4>Current Address</h4>
+                        <h5>{auth?.user?.address}</h5>
+                        <button className='btn btn-outline-warning'
+                           onClick={() => navigate('/dashboard/user/profile')}
+                        >Update Address
+                        </button>
+                      </div>
+                      </>
+                    ) : (
+                      <div className='mb-3'>
+                        {auth?.token ? (
+                          <button className='btn btn-outline-warning'
+                            onClick={() => navigate('/dashboard/user/profile')}
+                          >
+                            Update Address
+                          </button>
+                        ) : (
+                          <button className='btn btn-outline-warning'
+                            onClick={() => navigate('/login',{
+                              state: '/cart',
+                            })}
+                          >
+                            Please Login to checkout
+                          </button>
+                        )}
+                      </div>
+                    )}
                 </div>
             </div>
         </div>
