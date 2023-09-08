@@ -186,3 +186,7 @@ export const updateProfileController = async (req, res) => {
         })
     }
 }
+
+// braintree pass: Jahidul117531 ,, paypal  pass: Sammi117531
+
+// followjahidul@gmail.com ,,,, pass: Jahidul11753!

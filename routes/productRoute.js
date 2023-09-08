@@ -2,6 +2,8 @@ import express from 'express';
 import {isAdmin, requireSignIn} from '../middlewares/authMiddleware.js';
 import formidable from 'express-formidable';
 import { 
+    braintreePaymentController,
+    braintreeTokenController,
     categoryPorductsController,
     createProductController, 
     deleteProductController, 
@@ -64,7 +66,13 @@ router.get('/product-search/:keyword', searchProductController);
 router.get('/related-product/:pid/:cid', relatedProductController);
 
 //Category based products
-router.get('/category-products/:slug', categoryPorductsController)
+router.get('/category-products/:slug', categoryPorductsController);
 
+//payment routes
+//token
+router.get('/braintree/token', braintreeTokenController)
 
-export default router
+//payment route
+router.post('/braintree/payment', requireSignIn, braintreePaymentController)
+
+export default router;
