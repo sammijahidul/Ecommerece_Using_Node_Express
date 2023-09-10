@@ -1,37 +1,57 @@
 import React, {useState, useEffect} from 'react'
-import Layout from '../../components/Layout/Layout'
-import UserMenu from '../../components/Layout/UserMenu'
+import AdminMenu from '../../components/Layout/AdminMenu'
+import Layout from '../../components/Layout/Layout';
 import axios from 'axios'
+import toast from 'react-hot-toast'
 import { useAuth } from '../../context/auth'
 import moment from 'moment'
+import {Select} from 'antd'
+const { Option } = Select;
 
-const Orders = () => {
-  const [orders, setOrders] = useState([])
-  const [auth, setAuth] = useAuth()
+const AdminOrder = () => {
+    const [status, setStatus] = useState(
+      ["Not Process", 
+      "Processing", 
+      "Shipped", 
+      "Deliverd", 
+      "Cancel"
+    ]);
+    const [changeStatus, setChangeStatus] = useState("");
+    const [orders, setOrders] = useState([]);
+    const [auth, setAuth] = useAuth();
+  
+    //get orders
+    const getOrders = async () => {
+      try {
+        const {data} = await axios.get('/api/v1/auth/all-orders')
+        setOrders(data);      
+      } catch (error) {
+        console.log(error)
+      }
+    };
+    useEffect(() => {
+      if(auth?.token) getOrders();
+    }, [auth?.token]);
 
-  //get orders
-  const getOrders = async () => {
-    try {
-      const {data} = await axios.get('/api/v1/auth/orders')
-      setOrders(data)      
-    } catch (error) {
-      console.log(error)
+    //status update
+    const handleChange = async (orderId, value) => {
+      try {
+        const {data} = await axios.patch(`/api/v1/auth/order-status/${orderId}`, 
+              {status:value})
+        getOrders();
+      } catch (error) {
+        console.log(error)
+      }
     }
-  };
-  useEffect(() => {
-    if(auth?.token) getOrders()
-  }, [auth?.token])
   return (
-    <Layout title={'Your Orders'}>
-        <div className='container-flui p-3 m-3'>
-            <div className='row'>
-                <div className='col-md-3'>
-                  <UserMenu />
-                </div>
-                <div className='col-md-9'>
-                  <h1 className='text-center'>All Orders</h1>
-                  {
-                    orders?.map((o, i) => {
+    <Layout title='All orders'>
+      <div className='row dashboard'>
+           <div className='col-md-3'>
+                <AdminMenu />
+           </div>
+           <div className='col-md-9'> 
+               <h1 className='text-center'>All Orders</h1>
+               {orders?.map((o, i) => {
                       return(
                         <div className='border-shadow'>
                           <table className='table'>
@@ -48,7 +68,18 @@ const Orders = () => {
                             <tbody>
                               <tr>
                                 <td>{i + 1}</td>
-                                <td>{o?.status}</td>
+                                <td>
+                                    <Select 
+                                        bordered={false} 
+                                        onChange={(value) => handleChange(o._id, value)}
+                                        defaultValue={o?.status}>
+                                          {status.map((s,i) => (
+                                              <Option key={i} value={s}>
+                                                {s}
+                                              </Option>
+                                          ))}
+                                    </Select>
+                                </td>
                                 <td>{o?.buyer?.name}</td>
                                 <td>{moment(o?.createdAt).fromNow()}</td>
                                 <td>{o?.payment.success ? "Success":"Failed"}</td>
@@ -80,11 +111,10 @@ const Orders = () => {
                       )
                     })
                   }
-                </div>        
-            </div>         
-        </div>
-    </Layout> 
+           </div>
+      </div>
+    </Layout>   
   )
 }
 
-export default Orders
+export default AdminOrder

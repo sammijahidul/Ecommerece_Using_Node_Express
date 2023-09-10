@@ -23,6 +23,7 @@ import ProductDetails from './pages/ProductDetails';
 import Categories from './pages/Categories';
 import CategoryProducts from './pages/CategoryProducts';
 import CartProduct from './pages/CartProduct';
+import AdminOrder from './pages/Admin/AdminOrder';
 
 
 function App() {
@@ -46,7 +47,8 @@ function App() {
             <Route path='admin/create-product' element={<CreateProduct />} />
             <Route path='admin/product/:slug' element={<UpdateProduct />} />
             <Route path='admin/products' element={<Products />} />
-            <Route path='admin/users' element={<Users />} />                    
+            <Route path='admin/users' element={<Users />} />     
+            <Route path='admin/orders' element={<AdminOrder />} />                 
           </Route>    
           <Route path='/register' element={<Register />} />
           <Route path='/forgot-password' element={<ForgotPassword/>} />
