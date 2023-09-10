@@ -5,7 +5,7 @@ import axios from 'axios'
 import Spinner from "../Spinner";
 
 export default function AdminRoute() {
-    const [ok, setOk] = useState();
+    const [ok, setOk] = useState(false);
     const [auth, setAuth] = useAuth()
 
     useEffect(() => {
@@ -18,7 +18,7 @@ export default function AdminRoute() {
             }
         }
         if(auth?.token) authCheck()
-    }, [auth?.token])
+    }, [auth?.token]);
 
-    return ok ? <Outlet/> : <Spinner path="" />
+    return ok ? <Outlet/> : <Spinner path="" />;
 }

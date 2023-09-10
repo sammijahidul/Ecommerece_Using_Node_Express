@@ -1,8 +1,8 @@
 import { useState, useContext, createContext} from "react";
 
 const SearchContext = createContext();
-const SearchProvider = ({children}) => {
-    const [auth,setAuth] = useState({
+const SearchProvider = ({ children }) => {
+    const [auth, setAuth] = useState({
        keyword: "",
        results: [],
     });

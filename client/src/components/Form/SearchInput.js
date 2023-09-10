@@ -1,5 +1,5 @@
 import React from 'react';
-import {useSearch, userSearch} from '../../context/search'
+import {useSearch} from '../../context/search'
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
@@ -10,7 +10,9 @@ const SearchInput = () => {
     const handleSubmit = async (e) => {
       e.preventDefault();
       try {
-        const {data} = await axios.get(`/api/v1/product/product-search/${values.keyword}`)
+        const {data} = await axios.get(
+          `/api/v1/product/product-search/${values.keyword}`
+        );
         setValues({...values, results: data});
         navigate('/search')
       } catch (error) {
@@ -19,7 +21,9 @@ const SearchInput = () => {
     }
   return (
     <div>
-      <form className='d-flex' role='search' onSubmit={handleSubmit}>
+      <form className='d-flex search-form' 
+            role='search' 
+            onSubmit={handleSubmit}>
         <input 
            className='form-control me-2'
            type='search'

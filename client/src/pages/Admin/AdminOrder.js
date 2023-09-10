@@ -1,11 +1,11 @@
-import React, {useState, useEffect} from 'react'
+import React, { useState, useEffect } from 'react'
 import AdminMenu from '../../components/Layout/AdminMenu'
 import Layout from '../../components/Layout/Layout';
 import axios from 'axios'
 import toast from 'react-hot-toast'
 import { useAuth } from '../../context/auth'
 import moment from 'moment'
-import {Select} from 'antd'
+import { Select } from 'antd'
 const { Option } = Select;
 
 const AdminOrder = () => {
@@ -30,7 +30,7 @@ const AdminOrder = () => {
       }
     };
     useEffect(() => {
-      if(auth?.token) getOrders();
+      if (auth?.token) getOrders();
     }, [auth?.token]);
 
     //status update
@@ -69,39 +69,40 @@ const AdminOrder = () => {
                               <tr>
                                 <td>{i + 1}</td>
                                 <td>
-                                    <Select 
-                                        bordered={false} 
-                                        onChange={(value) => handleChange(o._id, value)}
-                                        defaultValue={o?.status}>
-                                          {status.map((s,i) => (
-                                              <Option key={i} value={s}>
-                                                {s}
-                                              </Option>
-                                          ))}
-                                    </Select>
+                                  <Select 
+                                      bordered={false} 
+                                      onChange={(value) => handleChange(o._id, value)}
+                                      defaultValue={o?.status}
+                                  >
+                                      {status.map((s,i) => (
+                                          <Option key={i} value={s}>
+                                            {s}
+                                          </Option>
+                                        ))}
+                                  </Select>
                                 </td>
                                 <td>{o?.buyer?.name}</td>
                                 <td>{moment(o?.createdAt).fromNow()}</td>
-                                <td>{o?.payment.success ? "Success":"Failed"}</td>
+                                <td>{o?.payment.success ? "Success" : "Failed"}</td>
                                 <td>{o?.products?.length}</td>
                               </tr>
                             </tbody>
                           </table>
                           <div className='container'>
                            {o?.products.map((p,i) => (
-                            <div className='row mb-2 p-3 card flex-row'> 
+                            <div className='row mb-2 p-3 card flex-row' key={p._id}> 
                               <div className='col-md-4'>
                                 <img 
                                   src={`/api/v1/product/product-photo/${p._id}`}
                                   className='card-img-top'
                                   alt={p.name}
-                                  width={"150px"}
-                                  height={"150px"}
+                                  width={"100px"}
+                                  height={"100px"}
                                   />
                               </div>
                               <div className='col-md-8'>
                                   <p>{p.name}</p>
-                                  <p>{p.description.substring(0, 50)}</p>
+                                  <p>{p.description.substring(0, 30)}</p>
                                   <p>Price : ${p.price}</p>
                               </div>
                             </div>

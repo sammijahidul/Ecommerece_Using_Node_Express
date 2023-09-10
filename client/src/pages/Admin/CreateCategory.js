@@ -39,7 +39,7 @@ const CreateCategory = () => {
       }      
     } catch (error) {
         console.log(error);
-        toast.error('Something went wrong while getting categories')
+        toast.error('Something went wrong while getting category')
     }
   };
   useEffect (() => {
@@ -50,8 +50,10 @@ const CreateCategory = () => {
   const handleUpdate = async (e) => {
     e.preventDefault();
      try {
-        const {data} = await axios.patch(`/api/v1/category/update-category/${selected._id}`, 
-                     {name: updatedName})
+        const {data} = await axios.patch(
+          `/api/v1/category/update-category/${selected._id}`, 
+          {name: updatedName}
+        );
         if(data.success) {
           toast.success(`${updatedName} is updated`);
           setSelected(null);
@@ -69,8 +71,9 @@ const CreateCategory = () => {
   //delete category
   const handleDelete = async (id) => {
      try {
-        const {data} = await axios.delete(`/api/v1/category/delete-category/${id}`, 
-                     )
+        const {data} = await axios.delete(
+          `/api/v1/category/delete-category/${id}`, 
+        );
         if(data.success) {
           toast.success(`Category is deleted`);
           getAllCategory();
@@ -84,14 +87,14 @@ const CreateCategory = () => {
 
   return (
     <Layout title={"Dashboard - Create Category"}>
-      <div className='container-fluid m-3 p-3' >
+      <div className='container-fluid m-3 p-3 dashboard'>
         <div className='row'>
             <div className='col-md-3'>
                 <AdminMenu/>
             </div>
             <div className='col-md-9'>
                 <h1>Manage Category</h1>
-                <div className='p-3' w-50>
+                <div className='p-3 w-50'>
                    <CategoryForm 
                       handleSubmit={handleSubmit}
                       value={name}
@@ -124,7 +127,7 @@ const CreateCategory = () => {
                                <button className='btn btn-danger ms-2' 
                                   onClick={() => {
                                     handleDelete(c._id)
-                                    }}
+                                  }}
                                 >
                                   Delete
                                </button>
