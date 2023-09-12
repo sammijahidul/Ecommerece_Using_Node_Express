@@ -16,13 +16,14 @@ const ForgotPassword =  () => {
     const handleSubmit = async (e) => {
       e.preventDefault();
       try {
-          const res = await axios.post('/api/v1/auth/forgot-password', 
-                    {                   
-                      email, 
-                      newPassword,  
-                      answer                    
-                    }
-                  );
+          const res = await axios.post(
+            '/api/v1/auth/forgot-password', 
+              {                   
+                email, 
+                newPassword,  
+                answer                    
+              }
+            );
           if(res && res.data.success) {
               toast.success(res.data && res.data.message);              
               navigate("/login");
@@ -41,41 +42,43 @@ const ForgotPassword =  () => {
         <form onSubmit={handleSubmit}>
             <h4 className='title'>Reset Password </h4>                       
             <div className="mb-3">           
-                <input 
-                    type="email" 
-                    value={email}
-                    onChange={ (e) => setEmail(e.target.value)}
-                    className="form-control" 
-                    id="exampleInputEmail1"  
-                    placeholder='Enter Your Email'
-                    required
-                />     
+              <input 
+                type="email" 
+                value={email}
+                onChange={ (e) => 
+                  setEmail(e.target.value)
+                }
+                className="form-control" 
+                id="exampleInputEmail1"  
+                placeholder='Enter Your Email'
+                required
+              />     
             </div>
             <div className="mb-3">            
-                <input 
-                    type="password" 
-                    value={newPassword}
-                    onChange={ (e) => setNewPassword(e.target.value)}
-                    className="form-control" 
-                    id="exampleInputPassword1" 
-                    placeholder='Enter Your New Password' 
-                    required
-                />
+              <input 
+                type="password" 
+                value={newPassword}
+                onChange={ (e) => setNewPassword(e.target.value)}
+                className="form-control" 
+                id="exampleInputPassword1" 
+                placeholder='Enter Your New Password' 
+                required
+              />
             </div>  
             <div className="mb-3">           
-                <input 
-                    type="text" 
-                    value={answer}
-                    onChange={ (e) => setAnswer(e.target.value)}
-                    className="form-control" 
-                    id="exampleInputEmail1"  
-                    placeholder='Enter Your Favourite Sports'
-                    required
-                />     
+              <input 
+                  type="text" 
+                  value={answer}
+                  onChange={ (e) => setAnswer(e.target.value)}
+                  className="form-control" 
+                  id="exampleInputEmail1"  
+                  placeholder='Enter Your Secret Code'
+                  required
+              />     
             </div>                                                     
-              <button type="submit" className="btn btn-primary">
-                Reset
-              </button>
+            <button type="submit" className="btn btn-primary">
+              Reset
+            </button>
         </form>
       </div>
     </Layout>   

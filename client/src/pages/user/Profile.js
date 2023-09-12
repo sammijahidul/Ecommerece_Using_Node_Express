@@ -28,14 +28,15 @@ const Profile = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const {data} = await axios.patch('/api/v1/auth/profile-update', 
-                {
-                name, 
-                email, 
-                password, 
-                phone, 
-                address,
-                }
+            const {data} = await axios.patch(
+              '/api/v1/auth/profile-update', 
+              {
+              name, 
+              email, 
+              password, 
+              phone, 
+              address,
+              }
             );
             if(data?.error) {
                 toast.success(data?.error);
@@ -61,17 +62,18 @@ const Profile = () => {
                     <UserMenu/>
                 </div>
                 <div className='col-md-8'>
-                  <div className='form-container' style={{marginTop: '-30px'}} >
+                  <div className='form-container' style={{marginTop: '-40px'}} >
                     <form onSubmit={handleSubmit}>
                       <h4 className='title'>User Profile</h4>       
                       <div className="mb-3">            
                         <input 
-                            type="text" 
-                            value={name}
-                            onChange={ (e) => setName(e.target.value)}
-                            className="form-control" 
-                            id="exampleInputEmail1" 
-                            placeholder='Enter Your Name' 
+                          type="text" 
+                          value={name}
+                          onChange={ (e) => setName(e.target.value)}
+                          className="form-control" 
+                          id="exampleInputEmail1" 
+                          placeholder='Enter Your Name' 
+                          autoFocus
                         />     
                       </div>
                       <div className="mb-3">           
@@ -82,7 +84,7 @@ const Profile = () => {
                             className="form-control" 
                             id="exampleInputEmail1"  
                             placeholder='Enter Your Email'
-
+                            disabled
                         />     
                       </div>
                       <div className="mb-3">            
@@ -93,7 +95,6 @@ const Profile = () => {
                             className="form-control" 
                             id="exampleInputPassword1" 
                             placeholder='Enter Your Password' 
-
                         />
                       </div>
                       <div className="mb-3">          
@@ -104,7 +105,6 @@ const Profile = () => {
                             className="form-control" 
                             id="exampleInputEmail1"  
                             placeholder='Enter your Phone'
- 
                         />     
                       </div>
                       <div className="mb-3">            
@@ -119,15 +119,15 @@ const Profile = () => {
                       </div>
                         {/* <div className="mb-3 form-check">
                         </div> */}
-                        <button type="submit" className="btn btn-primary">
-                            Update
-                        </button>
+                      <button type="submit" className="btn btn-primary">
+                        Update
+                      </button>
                     </form>
-                    </div>
+                  </div>
                 </div>
-            </div>
+          </div>
         </div>
-    </Layout>
+  </Layout>
   )
 }
 

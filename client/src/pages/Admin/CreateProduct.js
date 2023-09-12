@@ -21,7 +21,9 @@ const CreateProduct = () => {
   //get all categories
   const getAllCategory = async () => {
     try {
-      const {data} = await axios.get('/api/v1/category/get-category')
+      const {data} = await axios.get(
+        '/api/v1/category/get-category'
+      )
       if(data?.success) {
         setCategories(data?.category);
       }      
@@ -45,8 +47,10 @@ const CreateProduct = () => {
       productData.append("quantity", quantity)
       productData.append("category", category)
       productData.append("photo", photo)
-      const {data} = axios.post('/api/v1/product/create-product',  productData)
-      
+      const {data} = axios.post(
+        '/api/v1/product/create-product',  
+        productData
+      )      
       if(data?.success) {
         toast.error(data?.message)
       } else {
@@ -61,7 +65,7 @@ const CreateProduct = () => {
 
   return (
     <Layout title={'Dashboard - Create Product'}>
-      <div className='container-fluid m-3 p-3 dashboard' >
+      <div className='row dashboard' >
         <div className='row'>
             <div className='col-md-3'>
                 <AdminMenu/>
@@ -89,12 +93,12 @@ const CreateProduct = () => {
                     <label className='btn btn-outline-secondary col-md-12'>
                         {photo ? photo.name : "Upload Photo"} 
                         <input 
-                            type='file' 
-                            name='photo' 
-                            accept='image/*' 
-                            onChange={(e) => setPhoto(e.target.files[0])}
-                            hidden
-                        />
+                          type='file' 
+                          name='photo' 
+                          accept='image/*' 
+                          onChange={(e) => setPhoto(e.target.files[0])}
+                          hidden
+                      />
                     </label>                   
                   </div>
                   <div className='mb-3'>

@@ -82,7 +82,7 @@ const HomePage = () => {
     if(value){
       all.push(id)
     } else {
-      all = all.filter(c => c!== id)
+      all = all.filter((c) => c!== id)
     }
     setChecked(all);
   }
@@ -127,7 +127,7 @@ const HomePage = () => {
         src='/images/banner-img.jpg'
         className='banner-img'
         alt='bannerimage'
-        height={'120px'}  
+        height={'70px'}  
         width={'100%'}          
       />
       {/* banner image */}
@@ -135,9 +135,12 @@ const HomePage = () => {
          <div className='col-md-3 filters'>
            <h4 className='text-center'>Filter By Category</h4>
            <div className='d-flex flex-column'>
-              {categories?.map(c => (
-                <Checkbox key={c._id} onChange={(e) => 
-                  handleFilter(e.target.checked, c._id)} >
+              {categories?.map((c) => (
+                <Checkbox 
+                  key={c._id} 
+                  onChange={(e) => 
+                    handleFilter(e.target.checked, c._id)} 
+                >
                   {c.name}
                 </Checkbox>
               ))}
@@ -182,7 +185,7 @@ const HomePage = () => {
                         </h5>
                       </div>
                       <p className='card-text'>
-                        {p.description.substring(0, 60)}...
+                        {p.description.substring(0, 20)}...
                       </p>
                       <div className='card-name-price'>
                         <button  

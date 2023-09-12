@@ -23,7 +23,7 @@ const Orders = () => {
   }, [auth?.token])
   return (
     <Layout title={'Your Orders'}>
-        <div className='container-flui p-3 m-3'>
+        <div className='container-flui p-3 m-3 dashboard'>
             <div className='row'>
                 <div className='col-md-3'>
                   <UserMenu />
@@ -51,21 +51,21 @@ const Orders = () => {
                                 <td>{o?.status}</td>
                                 <td>{o?.buyer?.name}</td>
                                 <td>{moment(o?.createdAt).fromNow()}</td>
-                                <td>{o?.payment.success ? "Success":"Failed"}</td>
+                                <td>{o?.payment.success ? "Success" : "Failed"}</td>
                                 <td>{o?.products?.length}</td>
                               </tr>
                             </tbody>
                           </table>
                           <div className='container'>
                            {o?.products.map((p,i) => (
-                            <div className='row mb-2 p-3 card flex-row'> 
+                            <div className='row mb-2 p-3 card flex-row' key={p._id}> 
                               <div className='col-md-4'>
                                 <img 
                                   src={`/api/v1/product/product-photo/${p._id}`}
                                   className='card-img-top'
                                   alt={p.name}
-                                  width={"150px"}
-                                  height={"150px"}
+                                  width={"100px"}
+                                  height={"100px"}
                                   />
                               </div>
                               <div className='col-md-8'>
@@ -81,9 +81,9 @@ const Orders = () => {
                     })
                   }
                 </div>        
-            </div>         
-        </div>
-    </Layout> 
+          </div>         
+      </div>
+  </Layout> 
   )
 }
 

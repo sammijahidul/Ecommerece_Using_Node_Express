@@ -110,34 +110,36 @@ const UpdateProduct = () => {
             </div>
             <div className='col-md-9'>
                 <h1>Update Product</h1>
-                <div>
-                    <Select 
-                        bordered={false} 
-                        placeholder='Select a category'
-                        size='large'
-                        showSearch 
-                        className='form-select mb-3' 
-                        onChange={(value) => {
-                          setCategory(value)
-                        }}
-                        value={category} 
-                    >
-                        {categories?.map(c => (
+                <div className='m-1 w-75'>
+                  <Select 
+                      bordered={false} 
+                      placeholder='Select a category'
+                      size='large'
+                      showSearch 
+                      className='form-select mb-3' 
+                      onChange={(value) => {
+                        setCategory(value)
+                      }}
+                      value={category} 
+                  >
+                      {categories?.map(c => (
                         <Option key={c._id} value={c._id}>
-                            {c.name}
+                          {c.name}
                         </Option>
-                        ))}
-                    </Select>
-                    <div className='mb-3'>
+                      ))}
+                  </Select>
+                  <div className='mb-3'>
                     <label className='btn btn-outline-secondary col-md-12'>
-                        {photo ? photo.name : "Upload Photo"} 
-                        <input 
-                            type='file' 
-                            name='photo' 
-                            accept='image/*' 
-                            onChange={(e) => setPhoto(e.target.files[0])}
-                            hidden
-                        />
+                      {photo ? photo.name : "Upload Photo"} 
+                      <input 
+                          type='file' 
+                          name='photo' 
+                          accept='image/*' 
+                          onChange={(e) => 
+                            setPhoto(e.target.files[0])
+                          }
+                          hidden
+                      />
                     </label>                   
                     </div>
                     <div className='mb-3'>
@@ -162,73 +164,81 @@ const UpdateProduct = () => {
                        )}
                     </div>
                     <div className='mb-3'>
-                    <input 
+                      <input 
                         type='text'
                         value={name}
                         placeholder='Write a name'
                         className='form-control'
                         onChange={(e) => setName(e.target.value)}
-                    />
+                      />
                     </div>
                     <div className='mb-3'>
-                    <textarea 
+                      <textarea 
                         type='text'
                         value={description}
                         placeholder='Write a description'
                         className='form-control'
-                        onChange={(e) => setDescription(e.target.value)}
-                    />
+                        onChange={(e) => 
+                          setDescription(e.target.value)
+                        }
+                      />
                     </div>
                     <div className='mb-3'>
-                    <input 
+                      <input 
                         type='number'
                         value={price}
                         placeholder='Assign the price'
                         className='form-control'
-                        onChange={(e) => setPrice(e.target.value)}
-                    />
+                        onChange={(e) => 
+                          setPrice(e.target.value)
+                        }
+                      />
                     </div>
                     <div className='mb-3'>
-                    <input 
+                      <input 
                         type='number'
                         value={quantity}
                         placeholder='Assign the quantity'
                         className='form-control'
-                        onChange={(e) => setQuantity(e.target.value)}
-                    />
+                        onChange={(e) => 
+                          setQuantity(e.target.value)
+                        }
+                      />
                     </div>
                     <div className='mb-3'>
-                    <Select
+                      <Select
                         bordered={false}
                         placeholder='Select Shipping'
                         size='large'
                         showSearch
-                        className='form-control mb-3'
+                        className='form-select mb-3'
                         onChange={(value) => {
                           setShipping(value);
                         }}
                         value={shipping ? 'yes' : 'No'}
-                        >
+                      >
                         <Option value="0">No</Option>
                         <Option value="1">Yes</Option>
-                    </Select>
+                      </Select>
                     </div>
                     <div className='mb-3'>
                       <button 
                         className='btn btn-primary'
                         onClick={handleUpdate}
-                        >Update Product
+                        >
+                          Update Product
                       </button>
                     </div>
                     <div className='mb-3'>
                       <button 
                         className='btn btn-danger'
                         onClick={handleDelete}
-                        >Delete Product
+                        >
+                          Delete Product
                       </button>
                     </div>
-                </div>
-            </div>
+              </div>
+          </div>
         </div>
       </div>  
     </Layout>   

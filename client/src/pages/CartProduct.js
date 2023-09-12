@@ -145,7 +145,8 @@ const CartProduct = () => {
                         <h5>{auth?.user?.address}</h5>
                         <button 
                           className='btn btn-outline-warning'
-                          onClick={() => navigate('/dashboard/user/profile')}
+                          onClick={() => 
+                            navigate('/dashboard/user/profile')}
                         >
                           Update Address
                         </button>

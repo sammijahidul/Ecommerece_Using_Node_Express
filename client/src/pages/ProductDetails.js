@@ -2,7 +2,6 @@ import Layout from '../components/Layout/Layout'
 import axios from 'axios'
 import React, {useState, useEffect} from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
-
 import '../styles/ProductDetailsStyles.css'
 
 const ProductDetails = () => {
@@ -18,7 +17,9 @@ const ProductDetails = () => {
     //get Product
     const getProduct = async () => {
         try {
-          const {data} = await axios.get(`/api/v1/product/get-product/${params.slug}`)
+          const {data} = await axios.get(
+            `/api/v1/product/get-product/${params.slug}`
+          )
           setProduct(data?.product)
           getSimilarProduct(data?.product._id, data?.product.category._id)
         } catch (error) {
@@ -28,7 +29,9 @@ const ProductDetails = () => {
     //get simmilar products
     const getSimilarProduct = async (pid, cid) => {
       try {
-        const {data} = await axios.get(`/api/v1/product/related-product/${pid}/${cid}`)
+        const {data} = await axios.get(
+          `/api/v1/product/related-product/${pid}/${cid}`
+        )
         setRelatedProducts(data?.products)
       } catch (error) {
         console.log(error)
@@ -51,10 +54,8 @@ const ProductDetails = () => {
                 <hr/>
                 <h6>Name : {product.name}</h6>
                 <h6>Description : {product.description}</h6>
-                <h6>
-                  Price : 
-                     {product?.price?.toLocaleString('en-US', {
-                      style: 'currency',
+                <h6>Price : {product?.price?.toLocaleString('en-US', {
+                    style: 'currency',
                       currency: 'USD',
                     })}
                 </h6>
