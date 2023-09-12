@@ -3,15 +3,15 @@ import Layout from '../../components/Layout/Layout'
 import AdminMenu from '../../components/Layout/AdminMenu'
 import axios from 'axios'
 import toast from 'react-hot-toast'
-import {Select} from 'antd'
-import {useNavigate} from 'react-router-dom'
-const {Option} = Select
+import { Select } from 'antd'
+import { useNavigate } from 'react-router-dom'
+const { Option } = Select;
 
 const CreateProduct = () => {
   const navigate = useNavigate()
   const [categories, setCategories] = useState([])
   const [photo, setPhoto] = useState("")
-  const [name, setname] = useState("")
+  const [name, setName] = useState("")
   const [category, setCategory] = useState("")
   const [description, setDescription] = useState("")
   const [price, setPrice] = useState("")
@@ -61,28 +61,29 @@ const CreateProduct = () => {
 
   return (
     <Layout title={'Dashboard - Create Product'}>
-      <div className='container-fluid m-3 p-3' >
+      <div className='container-fluid m-3 p-3 dashboard' >
         <div className='row'>
             <div className='col-md-3'>
                 <AdminMenu/>
             </div>
             <div className='col-md-9'>
                 <h1>Create Product</h1>
-                <div>
+                <div className='m-1 w-75'>
                   <Select 
-                      bordered={false} 
-                      placeholder='Select a category'
-                      size='large'
-                      showSearch 
-                      className='form-select mb-3' 
-                      onChange={(value) => {
-                        setCategory(value)
-                      }} >
-                      {categories?.map(c => (
-                        <Option key={c._id} value={c._id}>
-                          {c.name}
-                        </Option>
-                      ))}
+                    bordered={false} 
+                    placeholder='Select a category'
+                    size='large'
+                    showSearch 
+                    className='form-select mb-3' 
+                    onChange={(value) => {
+                      setCategory(value)
+                    }} 
+                  >
+                    {categories?.map((c) => (
+                      <Option key={c._id} value={c._id}>
+                        {c.name}
+                      </Option>
+                    ))}
                   </Select>
                   <div className='mb-3'>
                     <label className='btn btn-outline-secondary col-md-12'>
@@ -114,7 +115,7 @@ const CreateProduct = () => {
                       value={name}
                       placeholder='Write a name'
                       className='form-control'
-                      onChange={(e) => setname(e.target.value)}
+                      onChange={(e) => setName(e.target.value)}
                     />
                   </div>
                   <div className='mb-3'>
@@ -163,7 +164,8 @@ const CreateProduct = () => {
                     <button 
                       className='btn btn-primary'
                       onClick={handleSubmit}
-                      >Create Product
+                    >
+                      Create Product
                     </button>
                   </div>
                 </div>

@@ -3,14 +3,13 @@ import Layout from '../../components/Layout/Layout'
 import AdminMenu from '../../components/Layout/AdminMenu'
 import axios from 'axios'
 import toast from 'react-hot-toast'
-import {Select} from 'antd'
-import {useNavigate, useParams} from 'react-router-dom'
-const {Option} = Select
+import { Select } from 'antd'
+import { useNavigate, useParams } from 'react-router-dom'
+const { Option } = Select
 
 const UpdateProduct = () => {
     const navigate = useNavigate();
     const params = useParams();
-
     const [categories, setCategories] = useState([])
     const [photo, setPhoto] = useState("")
     const [name, setName] = useState("")
@@ -24,7 +23,9 @@ const UpdateProduct = () => {
     //get single product
     const getSingleProduct = async () => {
       try {
-          const {data} = await axios.get(`/api/v1/product/get-product/${params.slug}`)
+          const {data} = await axios.get(
+            `/api/v1/product/get-product/${params.slug}`
+          );
           setName(data.product.name)
           setId(data.product._id)
           setDescription(data.product.description)
@@ -39,11 +40,13 @@ const UpdateProduct = () => {
     }  
     useEffect(() => {
       getSingleProduct();
-    }, [])
+    }, []);
     //get all categories
     const getAllCategory = async () => {
       try {
-        const {data} = await axios.get('/api/v1/category/get-category')
+        const {data} = await axios.get(
+          '/api/v1/category/get-category'
+        )
         if(data?.success) {
           setCategories(data?.category);
         }      
@@ -67,7 +70,9 @@ const UpdateProduct = () => {
         productData.append("quantity", quantity)
         productData.append("category", category)
         photo && productData.append("photo", photo)
-        const {data} = axios.patch(`/api/v1/product/update-product/${id}`,  productData)
+        const {data} = axios.patch(
+          `/api/v1/product/update-product/${id}`,  productData
+        )
         
         if(data?.success) {
           toast.error(data?.message)
@@ -85,7 +90,9 @@ const UpdateProduct = () => {
       try {
         let answer = window.prompt('Are you sure, you want to delete this?');
         if(!answer) return;
-        const {data} = await axios.delete(`/api/v1/product/delete-product/${id}`)
+        const {data} = await axios.delete(
+          `/api/v1/product/delete-product/${id}`
+        )
         toast.success('Product deleted successfully')
         navigate('/dashboard/admin/products')
         
@@ -114,7 +121,7 @@ const UpdateProduct = () => {
                           setCategory(value)
                         }}
                         value={category} 
-                        >
+                    >
                         {categories?.map(c => (
                         <Option key={c._id} value={c._id}>
                             {c.name}
