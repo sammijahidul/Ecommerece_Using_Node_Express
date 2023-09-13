@@ -62,7 +62,9 @@ const ProductDetails = () => {
                 <h6>Category : {product?.category?.name}</h6>
                 <h6>Quantity : {product.quantity}</h6>
                 {/* <h4>Shipping : {product.shipping}</h4> */}
-                <button  class="btn btn-secondary ms-1">Add To Cart</button>
+                <button  className="btn btn-secondary ms-1">
+                  Add To Cart
+                </button>
             </div>
         </div>
         <hr />
