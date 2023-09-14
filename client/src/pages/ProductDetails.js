@@ -2,11 +2,14 @@ import Layout from '../components/Layout/Layout'
 import axios from 'axios'
 import React, {useState, useEffect} from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
+import { useCart } from '../context/cart'
+import toast from 'react-hot-toast'
 import '../styles/ProductDetailsStyles.css'
 
 const ProductDetails = () => {
     const params = useParams();
     const navigate = useNavigate();
+    const [cart, setCart] = useCart();
     const [product, setProduct] = useState({})
     const [relatedProducts, setRelatedProducts] = useState([])
     
@@ -39,6 +42,7 @@ const ProductDetails = () => {
     }
   return (
     <Layout>
+      <div className='main-content'>
         <div className='row container product-details'>
             <div className='col-md-6'>
                 <img 
@@ -62,9 +66,19 @@ const ProductDetails = () => {
                 <h6>Category : {product?.category?.name}</h6>
                 <h6>Quantity : {product.quantity}</h6>
                 {/* <h4>Shipping : {product.shipping}</h4> */}
-                <button  className="btn btn-secondary ms-1">
-                  Add To Cart
-                </button>
+                <button  
+                    className="btn btn-dark ms-1" 
+                    onClick={() => {
+                      setCart([...cart, product]);
+                      localStorage.setItem(
+                        'cart', 
+                        JSON.stringify([...cart, product])
+                      )
+                      toast.success('Item added to cart')
+                    }}
+                    >
+                        Add To Cart
+                  </button>
             </div>
         </div>
         <hr />
@@ -109,6 +123,7 @@ const ProductDetails = () => {
               ))}
             </div>
         </div>
+     </div>  
     </Layout>
   )
 }

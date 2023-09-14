@@ -23,6 +23,7 @@ const Orders = () => {
   }, [auth?.token])
   return (
     <Layout title={'Your Orders'}>
+      <div className='main-content'>
         <div className='row dashboard'>
             <div className='row'>
                 <div className='col-md-3'>
@@ -83,6 +84,7 @@ const Orders = () => {
                 </div>        
           </div>         
       </div>
+    </div>  
   </Layout> 
   )
 }

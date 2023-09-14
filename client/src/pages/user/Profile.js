@@ -56,6 +56,7 @@ const Profile = () => {
       }
   return (
     <Layout title={'Your Profile'}>
+      <div className='main-content'>
         <div className='row dashboard'>
             <div className='row'>
                 <div className='col-md-3'>
@@ -127,6 +128,7 @@ const Profile = () => {
                 </div>
           </div>
         </div>
+      </div>     
   </Layout>
   )
 }

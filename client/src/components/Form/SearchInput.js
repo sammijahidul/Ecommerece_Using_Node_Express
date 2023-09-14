@@ -2,6 +2,7 @@ import React from 'react';
 import {useSearch} from '../../context/search'
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import toast from 'react-hot-toast';
 
 const SearchInput = () => {
     const [values, setValues] = useSearch();
@@ -13,7 +14,11 @@ const SearchInput = () => {
         const {data} = await axios.get(
           `/api/v1/product/product-search/${values.keyword}`
         );
-        setValues({...values, results: data});
+        if(Array.isArray(data)) {
+          setValues({...values, results: data});
+        } else {
+          toast.error('Searching field is empty')
+        }
         navigate('/search')
       } catch (error) {
         console.log(error)

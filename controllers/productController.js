@@ -278,6 +278,10 @@ export const searchProductController = async (req, res) => {
             ]
         }).select('-photo');
 
+        // if (!Array.isArray(results)) {
+        //     // Handle the case where results is not an array
+        //     throw new Error('Search results are not an array');
+        // }
         res.json(results);
 
     } catch (error) {

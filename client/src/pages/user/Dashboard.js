@@ -7,6 +7,7 @@ const Dashboard = () => {
   const [auth] = useAuth();
   return (
     <Layout title={"Dashboard - Ecommerce App"}>
+      <div className='main-content'>
         <div className='row dashboard'>
             <div className='row'>
                <div className='col-md-3'>
@@ -21,6 +22,7 @@ const Dashboard = () => {
                </div>
             </div>
         </div>
+      </div>  
     </Layout>   
   )
 }

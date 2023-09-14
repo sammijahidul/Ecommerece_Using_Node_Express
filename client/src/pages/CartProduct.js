@@ -83,6 +83,7 @@ const CartProduct = () => {
     };
   return (
     <Layout>
+      <div className='main-content'>
         <div className='cart-page'>
             <div className='row'>
                <div className='col-md-12'>
@@ -203,6 +204,7 @@ const CartProduct = () => {
                 </div>
           </div>
         </div>
+      </div>
     </Layout>
   )
 }
